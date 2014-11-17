@@ -3,6 +3,9 @@ require 'nokogiri'
 require 'json'
 require 'time'
 
+Encoding.default_external = Encoding::UTF_8
+Encoding.default_internal = Encoding::UTF_8
+
 class ParkingApi
   def self.call(env)
     [200, {"Content-Type"=>"application/json; charset=utf-8"}, StringIO.new(self.get_parking_spaces)]
