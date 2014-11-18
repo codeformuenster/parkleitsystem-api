@@ -37,8 +37,8 @@ class ParkingApi
 
       unless index == nil
         parking_spaces[index]["properties"].merge!({
-          free: area['onclick'][/frei=[\d]+/].split('=')[1],
-          total: area['onclick'][/gesamt=[\d]+/].split('=')[1],
+          free: area['onclick'][/frei=[\d]+/].split('=')[1].to_i,
+          total: area['onclick'][/gesamt=[\d]+/].split('=')[1].to_i,
           status: area['onclick'][/status=\w+/].split('=')[1]
         })
       end
