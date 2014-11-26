@@ -11,6 +11,9 @@ Ein Wrapper für das Parkleitsystem des Tiefbauamts Münster (http://www5.stadt-
 - `bundle install`
 - ausführen mit `unicorn -Ilib`
 
+### New Relic Monitoring
+- newrelic.yml in `config` anlegen (wird bei new relic erklärt)
+
 
 Wer schon einmal ein bisschen auf muenster.de herumgesurft hat, ist sicherlich schon auf das [Parkleitsystem](http://www5.stadt-muenster.de/parkhaeuser/) des Tiefbauamtes Münster gestoßen. Das System erlaubt es seinen Nutzern die aktuell freien Parkplätze für insgesamt 16 Parkplätze, Parkhäuser und Tiefgaragen in Münsters Innenstadt abzurufen.
 
