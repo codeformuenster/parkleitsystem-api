@@ -8,7 +8,7 @@ Encoding.default_internal = Encoding::UTF_8
 
 class ParkingApi
   def self.call(env)
-    [200, {"Content-Type"=>"application/json; charset=utf-8"}, StringIO.new(self.get_parking_spaces)]
+    [200, {"Content-Type"=>"application/json; charset=utf-8", "Access-Control-Allow-Origin"=>"*"}, StringIO.new(self.get_parking_spaces)]
   end
 
   CACHE_MAX_AGE = 60
