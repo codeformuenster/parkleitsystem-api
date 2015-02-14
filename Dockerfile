@@ -1,4 +1,4 @@
-FROM ruby:2.1.5-onbuild
+FROM ruby:2.2.0-onbuild
 
 RUN rm /etc/localtime && ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 
