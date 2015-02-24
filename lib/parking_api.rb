@@ -19,7 +19,7 @@ class ParkingApi
   }
 
   def self.get_parking_spaces
-    if Time.now.to_i - @cache[:fetch_time] < CACHE_MAX_AGE
+    if @cache[:fetch_time] != nil and Time.now.to_i - @cache[:fetch_time] < CACHE_MAX_AGE
       @cache.to_json
     else
       self.build_cache().to_json
