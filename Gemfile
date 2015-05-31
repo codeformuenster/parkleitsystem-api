@@ -1,9 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.2.0"
+ruby "2.2.2"
 
 gem "nokogiri"
 gem "json"
-gem "rack"
-gem "unicorn"
-gem "newrelic_rpm"

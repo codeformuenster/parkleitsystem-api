@@ -1,5 +1,5 @@
-FROM ruby:2.2.0-onbuild
+FROM ruby:2.2.2-onbuild
 
 RUN rm /etc/localtime && ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 
-CMD ["unicorn", "-Ilib", "-E production"]
+CMD ["ruby", "parse_and_push.rb"]
