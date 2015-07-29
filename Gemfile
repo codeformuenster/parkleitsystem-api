@@ -1,6 +1,8 @@
 source "https://rubygems.org"
 
-gem "nokogiri"
+gem "mechanize"
 gem "json"
-gem "rack"
-gem "unicorn"
+
+gem "clockwork"
+
+gem "overpass-api-ruby"

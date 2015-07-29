@@ -1,0 +1,17 @@
+name,osm_id,underground
+PH Theater,node(68293849),true
+PP Hörsterplatz,way(36862888),false
+PH Alter Steinweg,way(142321933),false
+Busparkplatz,way(24618191),false
+PP Schlossplatz Nord,way(24618190),false
+PP Schlossplatz Süd,way(24618189),false
+PH Aegidii,way(337421675),true
+PP Georgskommende,way(44498540),false
+PH Münster Arkaden,node(409003589),true
+PH Karstadt,node(496190360),true
+PH Stubengasse,way(302632766),true
+PH Bremer Platz,way(110526495),false
+PH Engelenschanze,way(125787195),false
+PH Bahnhofstraße,node(387828680),true
+PH Cineplex,way(136053679),false
+PH Stadthaus 3,way(136053639),false

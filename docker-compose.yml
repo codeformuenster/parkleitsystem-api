@@ -1,4 +1,13 @@
 app:
   build: .
+  volumes:
+    - ./data:/usr/src/app/data
+
+web:
+  image: nginx
   ports:
-    - 3335:8080
+    - 8080:80
+  volumes_from:
+    - app
+  volumes:
+    - ./nginx.conf:/etc/nginx/nginx.conf:ro

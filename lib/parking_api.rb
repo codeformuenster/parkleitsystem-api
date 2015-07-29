@@ -1,7 +1,5 @@
-require 'open-uri'
-require 'nokogiri'
 require 'json'
-require 'time'
+require './lib/parking_scraper'
 
 Encoding.default_external = Encoding::UTF_8
 Encoding.default_internal = Encoding::UTF_8
@@ -12,8 +10,6 @@ class ParkingApi
   end
 
   CACHE_MAX_AGE = 60
-  @base_url = 'http://www5.stadt-muenster.de/parkhaeuser/'
-  @geojson = JSON.parse(open(File.join(File.dirname(File.expand_path(__FILE__)), 'parking_spaces.json')).read)
   @cache = {
     fetch_time: 0
   }
@@ -27,26 +23,11 @@ class ParkingApi
   end
 
   def self.build_cache
-    parking_spaces = @geojson["features"].clone
+    parking_spaces = ParkingScraper::fetch_spaces
 
-    doc = Nokogiri::HTML(open(@base_url))
     fetch_time = Time.now.to_i
 
-    doc.css('area').each do |area|
-      index = parking_spaces.index { |f| f["properties"]["name"] == area["alt"] }
-
-      unless index == nil
-        parking_spaces[index]["properties"].merge!({
-          free: area['onclick'][/frei=[\d]+/].split('=')[1].to_i,
-          total: area['onclick'][/gesamt=[\d]+/].split('=')[1].to_i,
-          status: area['onclick'][/status=\w+/].split('=')[1]
-        })
-      end
-    end
-
-    @cache = @geojson.clone
-    @cache["features"] = parking_spaces
-    @cache[:timestamp] = Time.parse(doc.css('strong')[0].text).to_i
+    @cache[:parking_spaces] = parking_spaces
     @cache[:fetch_time] = fetch_time
     @cache
   end
