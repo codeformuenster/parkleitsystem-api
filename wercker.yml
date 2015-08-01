@@ -1,0 +1,29 @@
+box: ruby
+
+build:
+  steps:
+    - bundle-install
+
+deploy:
+  # box: ubuntu
+  vultr:
+    - internal/docker-push:
+        username: $DOCKERHUB_USERNAME
+        # email: webwurst@gmail.com
+        password: $DOCKERHUB_PASSWORD
+        # tag: test
+        repository: codeformuenster/parkleitsystemapi
+        registry: https://registry.hub.docker.com
+    - script:
+        name: deploy
+        code: echo default deploy
+    - add-to-known_hosts:
+        hostname: 104.238.158.210
+    - mktemp:
+        envvar: PRIVATEKEY_PATH
+    - create-file:
+        name: write key
+        filename: $PRIVATEKEY_PATH
+        content: $VULTR_PRIVATE
+        overwrite: true
+        hide-from-log: true
