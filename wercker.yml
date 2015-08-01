@@ -26,9 +26,9 @@ deploy:
         content: $VULTR_PRIVATE
         overwrite: true
         hide-from-log: true
-   - script:
-      name: pull image
-      code: ssh -i $PRIVATEKEY_PATH -l root -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no 104.238.158.210 docker pull webwurst/parkleitsystemapi:test2
-   - script:
-      name: restart docker-compose
-      code: echo TBD
+    - script:
+        name: pull image
+        code: ssh -i $PRIVATEKEY_PATH -l root -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no 104.238.158.210 docker pull webwurst/parkleitsystemapi:test2
+    - script:
+        name: restart docker-compose
+        code: echo TBD
