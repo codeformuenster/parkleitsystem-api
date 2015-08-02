@@ -3,6 +3,7 @@ box: ruby
 build:
   steps:
     - bundle-install
+        binstubs: true
 
 deploy:
   # box: ubuntu
