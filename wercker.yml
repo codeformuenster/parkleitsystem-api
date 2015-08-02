@@ -2,8 +2,8 @@ box: ruby
 
 build:
   steps:
-    - bundle-install:
-        binstubs: true
+    - bundle-install
+        # binstubs: true
 
 deploy:
   # box: ubuntu
@@ -14,7 +14,11 @@ deploy:
         tag: test2
         repository: webwurst/parkleitsystemapi
         registry: https://registry.hub.docker.com
-        cmd: /usr/local/bundle/bin/clockwork clock.rb
+        cmd: |
+          cd /pipeline/source
+          export LANG=C.UTF-8
+          bundle install --path /pipeline/cache/bundle-install/
+          exec bundle exec clockwork clock.rb
     - script:
         name: deploy
         code: echo default deploy
