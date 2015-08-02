@@ -15,10 +15,12 @@ deploy:
         repository: webwurst/parkleitsystemapi
         registry: https://registry.hub.docker.com
         cmd: |
-          cd /pipeline/source
-          export LANG=C.UTF-8
-          bundle install --path /pipeline/cache/bundle-install/
-          exec bundle exec clockwork clock.rb
+          /bin/bash << EOF
+            cd /pipeline/source
+            export LANG=C.UTF-8
+            bundle install --path /pipeline/cache/bundle-install/
+            exec bundle exec clockwork clock.rb
+          EOF
     - script:
         name: deploy
         code: echo default deploy
