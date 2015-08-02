@@ -13,6 +13,7 @@ deploy:
         tag: test2
         repository: webwurst/parkleitsystemapi
         registry: https://registry.hub.docker.com
+        cmd: clockwork clock.rb
     - script:
         name: deploy
         code: echo default deploy
@@ -34,5 +35,5 @@ deploy:
         code: |
           ssh -i $PRIVATEKEY_PATH -l root -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no 104.238.158.210 /bin/bash << EOF
             docker-compose -f /root/wercker/parkleitsystem-api/docker-compose.yml restart
-            docker-compose -f /root/wercker/parkleitsystem-api/docker-compose.yml start
+            docker-compose -f /root/wercker/parkleitsystem-api/docker-compose.yml up
           EOF
