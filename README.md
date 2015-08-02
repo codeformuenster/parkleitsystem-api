@@ -1,5 +1,7 @@
 # Parkleitsystem API Münster
 
+[![wercker status](https://app.wercker.com/status/274d1e9e544844e4355435e201a4a0be/m "wercker status")](https://app.wercker.com/project/bykey/274d1e9e544844e4355435e201a4a0be)
+
 Ein Wrapper für das Parkleitsystem des Tiefbauamts Münster (http://www5.stadt-muenster.de/parkhaeuser/). Die API lässt sich abrufen auf http://parkleit-api.codeformuenster.org/
 
 ### Docker
