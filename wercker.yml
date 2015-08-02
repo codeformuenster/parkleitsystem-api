@@ -13,7 +13,7 @@ deploy:
         tag: test2
         repository: webwurst/parkleitsystemapi
         registry: https://registry.hub.docker.com
-        cmd: clockwork clock.rb
+        cmd: /usr/local/bundle/bin/clockwork clock.rb
     - script:
         name: deploy
         code: echo default deploy
