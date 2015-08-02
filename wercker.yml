@@ -31,4 +31,4 @@ deploy:
         code: ssh -i $PRIVATEKEY_PATH -l root -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no 104.238.158.210 docker pull webwurst/parkleitsystemapi:test2
     - script:
         name: restart docker-compose
-        code: echo TBD
+        code: ssh -i $PRIVATEKEY_PATH -l root -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no 104.238.158.210 docker-compose -f /root/wercker/parkleitsystem-api/docker-compose.yml restart
