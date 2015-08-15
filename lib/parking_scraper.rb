@@ -47,8 +47,8 @@ module ParkingScraper
         name: link.text,
         free: free_total_lastupdate.shift.text.to_i,
         total: free_total_lastupdate.shift.text.to_i,
-        updated_at: Time.parse("#{free_total_lastupdate.shift.text} CET").utc.round.iso8601(3),
-        fetch_time: Time.now.utc.round.iso8601(3)
+        updated_at: Time.parse("#{free_total_lastupdate.shift.text} CET").utc.iso8601(3),
+        fetch_time: Time.now.utc.iso8601(3)
       }.merge(@osm_ids[link.text])
     end
 
