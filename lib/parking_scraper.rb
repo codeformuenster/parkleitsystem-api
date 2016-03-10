@@ -52,14 +52,22 @@ module ParkingScraper
       }.merge(@osm_ids[link.text])
     end
 
-    # assemble GeoJSON FeatureCollection
-    fc = { type: :FeatureCollection, features: spaces.map { |s|
-      { type: :Feature, geometry: s.delete(:geojson), properties: s } }
-    }
-    File.write("data/parking_spaces_featurecollection.json", fc.to_json)
+    if !spaces.empty?
 
-    # assemble parking spaces json without geometry
-    File.write("data/parking_spaces.json", spaces.to_json)
+      # assemble GeoJSON FeatureCollection
+      fc = { type: :FeatureCollection, features: spaces.map { |s|
+        { type: :Feature, geometry: s.delete(:geojson), properties: s } }
+      }
+      File.write("data/parking_spaces_featurecollection.json", fc.to_json)
+
+      # assemble parking spaces json without geometry
+      File.write("data/parking_spaces.json", spaces.to_json)
+
+      # create \n separated files
+      File.write("data/parking_spaces_n.json", spaces.map { |s| s.to_json }.join("\n"))
+      File.write("data/parking_spaces_featurecollection_n.json", fc[:features].map { |f| f.to_json }.join("\n"))
+
+    end
 
   end
 
