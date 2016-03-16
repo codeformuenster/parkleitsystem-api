@@ -27,6 +27,7 @@ module ParkingScraper
     row[:geojson] = self.overpass_to_geojson(overpass.raw_query("[out:json];#{row[:osm_id]};out skel qt;>;out skel qt;"))
 
     @osm_ids[row.delete(:name).last] = row.to_hash
+    sleep 15
   end
 
   @agent = Mechanize.new
