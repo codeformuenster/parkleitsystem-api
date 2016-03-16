@@ -44,13 +44,20 @@ module ParkingScraper
       free_total_lastupdate = details_page.search("#parkingStatus strong")
 
       # assemble return for map function
-      {
-        name: link.text,
-        free: free_total_lastupdate.shift.text.to_i,
-        total: free_total_lastupdate.shift.text.to_i,
-        updated_at: Time.parse("#{free_total_lastupdate.shift.text} CET").utc.iso8601(3),
-        fetch_time: Time.now.utc.iso8601(3)
-      }.merge(@osm_ids[link.text])
+      begin
+        return_space = {
+          name: link.text,
+          free: free_total_lastupdate.shift.text.to_i,
+          total: free_total_lastupdate.shift.text.to_i,
+          updated_at: Time.parse("#{free_total_lastupdate.shift.text} CET").utc.iso8601(3),
+          fetch_time: Time.now.utc.iso8601(3)
+        }.merge(@osm_ids[link.text])
+      rescue NoMethodError => e
+        return_space = {
+          error: "error fetching data"
+        }.merge(@osm_ids[link.text])
+      end
+      return_space
     end
 
     if !spaces.empty?
