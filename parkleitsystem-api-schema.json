@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "id": "http://codeformuenster.org/parkleitsystem-api/parkleitsystem-api-schema.json",
+  "type": "object",
+  "required": ["type", "features" ],
+  "properties": {
+    "features": {
+      "type": "array",
+      "items": {
+        "additionalProperties": false,
+        "required": [ "type", "properties", "geometry" ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [ "Feature" ]
+          },
+          "properties" : {
+            "type": "object"
+          },
+          "geometry": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "type": {
+      "type": "string",
+      "enum": [ "FeatureCollection" ]
+    }
+  },
+  "additionalProperties":false
+}
