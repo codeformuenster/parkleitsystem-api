@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Parkleitsystem API Münster by codeformuenster</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Parkleitsystem API Münster</h1>
+        <p>Ein Wrapper für das Parkleitsystem des Tiefbauamts Münster </p>
+
+        <p class="view"><a href="https://github.com/codeformuenster/parkleitsystem-api">View the Project on GitHub <small>codeformuenster/parkleitsystem-api</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/codeformuenster/parkleitsystem-api/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/codeformuenster/parkleitsystem-api/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/codeformuenster/parkleitsystem-api">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <p>Wer schon einmal ein bisschen auf muenster.de herumgesurft hat, ist sicherlich schon auf das <a href="http://www5.stadt-muenster.de/parkhaeuser/">Parkleitsystem</a> des Tiefbauamtes Münster gestoßen. Das System erlaubt es seinen Nutzern die aktuell freien Parkplätze für insgesamt 16 Parkplätze, Parkhäuser und Tiefgaragen in Münsters Innenstadt abzurufen.</p>
+
+<p>Dafür allein schon mal ein großes Lob. Es ist nicht selbstverständlich diese Daten frei verfügbar im Internet bereit zu stellen. Auf einer statischen Karte kann der geneigte Nutzer zudem die Standorte der Parkmöglichkeiten sehen. Zusätzlich können über Popups weitere Daten zu den einzelnen Standorten angezeigt werden. Diese umfassen Öffnungszeiten, Preise und Behinderten- und Frauenparkplätze.</p>
+
+<p>Wer dann das Parkleitsystem schonmal versucht hat im Auto zu benutzen, der wird gemerkt haben, dass die Seite eher für Desktopbrowser optimiert ist. Die Idee hinter der API war es, Apps die Möglichkeit zu geben, die Daten des Parkleitsystems benutzen zu können, ohne sich selbst mit scrapen "die Finger schmutzig" zu machen.</p>
+
+<p>Technisch ist die API mit einem <a href="https://github.com/codeformuenster/parkleitsystem-api/blob/master/lib/parking_api.rb">simplen Ruby Script</a> realisiert. Das HTML der Parkleit-Seite wird mit <a href="http://www.nokogiri.org/">Nokogiri</a> gescraped und dann in einem kleinen Cache vorgehalten, bis das Parkleitsystem neue Daten liefert. Dadurch minimiert sich auch die Last, die die API am Parkleitsystem erzeugt. Anfragen an die API werden so lange aus dem Cache beantwortet, bis eine gewisse Zeit abgelaufen ist. Als Format für die Rückgabe habe ich mich für eine GeoJSON FeatureCollection entschieden. Dafür habe ich mithilfe der OverpassAPI und <a href="http://overpass-turbo.eu/">overpass-turbo.eu</a> Daten aus <a href="http://openstreetmap.org">OpenStreetMap</a> exportiert und verschneide diese dann in der Parkleitsystem API mit den gescrapedten Daten aus dem Parkleitsystem. Die aktuelle Version kann man dann unter <a href="http://parkleit-api.codeformuenster.org/">http://parkleit-api.codeformuenster.org/</a> abrufen.</p>
+
+<p>Die API ist noch längst nicht fertig. Es fehlen noch die Informationen aus den Popups und eine Rückgabe ohne GeoJSON sind noch Ideen, die mir im Kopf herumschwirren. Wer also Lust hat, mitzuhelfen, der kann dies gerne tun. Schaut einfach auf <a href="https://github.com/codeformuenster/parkleitsystem-api">github.com/codeformuenster/parkleitsystem-api</a> und helft mit!</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/codeformuenster">codeformuenster</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
