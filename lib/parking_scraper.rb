@@ -43,12 +43,19 @@ module ParkingScraper
       # in this order
       free_total_lastupdate = details_page.search("#parkingStatus strong")
 
+      # paragraph element with opening times detail information
+      opening_times = details_page.search('.openingTimesWrap p').text
+
+      other_detail_info = extract_detail_info(details_page)
+
       # assemble return for map function
       begin
         return_space = {
           name: link.text,
           free: free_total_lastupdate.shift.text.to_i,
           total: free_total_lastupdate.shift.text.to_i,
+          opening_times: opening_times,
+          details: other_detail_info,
           updated_at: Time.parse("#{free_total_lastupdate.shift.text} CET").utc.iso8601(3),
           fetch_time: Time.now.utc.iso8601(3)
         }.merge(@osm_ids[link.text])
@@ -77,6 +84,17 @@ module ParkingScraper
 
     end
 
+  end
+
+  def self.extract_detail_info(details_page)
+    keys   = details_page.search('.description')
+    values = details_page.search('.value')
+    result = {}
+    remove_sign = /[\n\t:]+/
+    keys.each_with_index do |key, index|
+      result[key.text.gsub(remove_sign, "")] = values[index].text.gsub(remove_sign, "")
+    end
+    result
   end
 
 end

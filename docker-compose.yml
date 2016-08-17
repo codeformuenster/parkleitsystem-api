@@ -2,6 +2,7 @@ app:
   build: .
   volumes:
     - ./data:/usr/src/app/data
+    - ./lib:/usr/src/app/lib
 
 web:
   image: nginx
