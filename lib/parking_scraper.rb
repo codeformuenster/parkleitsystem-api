@@ -3,6 +3,7 @@ require "time"
 require "csv"
 require "overpass_api_ruby"
 require "json"
+require "./lib/details_parser"
 
 module ParkingScraper
 
@@ -27,7 +28,7 @@ module ParkingScraper
     row[:geojson] = self.overpass_to_geojson(overpass.raw_query("[out:json];#{row[:osm_id]};out skel qt;>;out skel qt;"))
 
     @osm_ids[row.delete(:name).last] = row.to_hash
-    sleep 15
+    #sleep 15
   end
 
   @agent = Mechanize.new
@@ -43,9 +44,6 @@ module ParkingScraper
       # in this order
       free_total_lastupdate = details_page.search("#parkingStatus strong")
 
-      # paragraph element with opening times detail information
-      opening_times = details_page.search('.openingTimesWrap p').text
-
       other_detail_info = extract_detail_info(details_page)
 
       # assemble return for map function
@@ -54,7 +52,6 @@ module ParkingScraper
           name: link.text,
           free: free_total_lastupdate.shift.text.to_i,
           total: free_total_lastupdate.shift.text.to_i,
-          opening_times: opening_times,
           details: other_detail_info,
           updated_at: Time.parse("#{free_total_lastupdate.shift.text} CET").utc.iso8601(3),
           fetch_time: Time.now.utc.iso8601(3)
@@ -92,7 +89,10 @@ module ParkingScraper
     result = {}
     remove_sign = /[\n\t:]+/
     keys.each_with_index do |key, index|
-      result[key.text.gsub(remove_sign, "")] = values[index].text.gsub(remove_sign, "")
+      key_name = key.text.gsub(remove_sign, "")
+      key_value = values[index].text.gsub(remove_sign, "")
+      translated_key = DetailsParser.translate_key key_name
+      result[translated_key] = DetailsParser.parse_details translated_key, key_value
     end
     result
   end
