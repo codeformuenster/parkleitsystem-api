@@ -1,14 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (4.2.6)
-      i18n (~> 0.7)
-      json (~> 1.7, >= 1.7.7)
-      minitest (~> 5.1)
-      thread_safe (~> 0.3, >= 0.3.4)
-      tzinfo (~> 1.1)
-    clockwork (1.2.0)
-      activesupport
+    clockwork (2.0.3)
       tzinfo
     diskcached (1.1.2)
     domain_name (0.5.20160309)
@@ -17,8 +10,7 @@ GEM
       domain_name (~> 0.5)
     httpi (2.4.1)
       rack
-    i18n (0.7.0)
-    json (1.8.3)
+    json (2.1.0)
     mechanize (2.7.4)
       domain_name (~> 0.5, >= 0.5.1)
       http-cookie (~> 1.0)
@@ -30,7 +22,6 @@ GEM
       webrobots (>= 0.0.9, < 0.2)
     mime-types (2.99.1)
     mini_portile2 (2.1.0)
-    minitest (5.8.4)
     net-http-digest_auth (1.4)
     net-http-persistent (2.9.4)
     nokogiri (1.6.8.rc3)
@@ -44,8 +35,8 @@ GEM
     pkg-config (1.1.7)
     rack (1.6.4)
     rubyntlm (0.6.0)
-    thread_safe (0.3.5)
-    tzinfo (1.2.2)
+    thread_safe (0.3.6)
+    tzinfo (1.2.5)
       thread_safe (~> 0.1)
     unf (0.1.4)
       unf_ext
@@ -56,7 +47,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  clockwork
+  clockwork (>= 1.2.0)
   json
   mechanize
   nokogiri (~> 1.6, >= 1.6.8.rc3)
@@ -64,4 +55,4 @@ DEPENDENCIES
   rubyntlm (~> 0.6.0)
 
 BUNDLED WITH
-   1.11.2
+   1.16.6
