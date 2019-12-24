@@ -1,8 +1,10 @@
-# Parkleitsystem API Münster
+# DEPRECATED: Parkleitsystem API Münster
 
-[![wercker status](https://app.wercker.com/status/274d1e9e544844e4355435e201a4a0be/m "wercker status")](https://app.wercker.com/project/bykey/274d1e9e544844e4355435e201a4a0be)
+This is no longer supported, please consider using https://github.com/codeformuenster/parking-decks-muenster instead.
 
 Ein Wrapper für das Parkleitsystem des Tiefbauamts Münster (http://www5.stadt-muenster.de/parkhaeuser/). Die API lässt sich abrufen auf http://parkleit-api.codeformuenster.org/
+
+[![wercker status](https://app.wercker.com/status/274d1e9e544844e4355435e201a4a0be/m "wercker status")](https://app.wercker.com/project/bykey/274d1e9e544844e4355435e201a4a0be)
 
 ### Docker
 - `docker build -t parking_api .`
