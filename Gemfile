@@ -8,4 +8,4 @@ gem "json"
 
 gem "clockwork"
 
-gem "overpass-api-ruby"
+gem "overpass-api-ruby", ">= 0.1.3"
