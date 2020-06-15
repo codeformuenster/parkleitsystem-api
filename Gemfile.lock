@@ -42,7 +42,7 @@ GEM
       httpi (~> 2.4.0)
       nokogiri
     pkg-config (1.1.7)
-    rack (1.6.4)
+    rack (2.0.8)
     rubyntlm (0.6.0)
     thread_safe (0.3.5)
     tzinfo (1.2.2)
